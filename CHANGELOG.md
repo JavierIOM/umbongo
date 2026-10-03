@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.1.0] - 2026-10-03
+
+### Changed
+- Reworked the site to a tropical "umbongo" brand: gradient background, fruit garnish, "they drink it in the congo" tagline, new favicon/OG image to match. Shortener form and function logic unchanged.
+
 ## [2.0.0] - 2026-10-03
 
 ### Changed

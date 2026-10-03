@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>umbo.ngo</title>
-  <meta name="description" content="Short links, made quick." />
+  <title>umbongo</title>
+  <meta name="description" content="They drink it in the congo. Short links, made quick." />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <meta property="og:title" content="umbo.ngo" />
-  <meta property="og:description" content="Short links, made quick." />
+  <meta property="og:title" content="umbongo" />
+  <meta property="og:description" content="They drink it in the congo. Short links, made quick." />
   <meta property="og:image" content="https://umbo.ngo/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -18,26 +18,42 @@
   <meta property="og:type" content="website" />
   <meta property="fb:app_id" content="811269275316635" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0f1117;
-      --bg-alt: #1a1f2e;
-      --text: #e5e7eb;
-      --text-dim: #94a3b8;
-      --border: #2a2f3e;
+      --bg-1: #2b1055;
+      --bg-2: #7a2063;
+      --bg-3: #c2410c;
+      --text: #fff8f0;
+      --text-dim: #e9d5ff;
+      --card-bg: rgba(20, 10, 35, 0.45);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --field-bg: rgba(0, 0, 0, 0.25);
       --accent: #F56400;
-      --error: #f87171;
-      --success: #4ade80;
+      --tagline: #ffd23f;
+      --error: #ffb4a2;
+      --wordmark-1: #ffd23f;
+      --wordmark-2: #F56400;
+      --wordmark-3: #ff5d8f;
     }
     :root[data-theme="light"] {
-      --bg: #FAF7F4;
-      --bg-alt: #FFFFFF;
-      --text: #222222;
-      --text-dim: #595959;
-      --border: #D9D9D9;
+      --bg-1: #fde7cf;
+      --bg-2: #ffc3a0;
+      --bg-3: #ffafbd;
+      --text: #3a1050;
+      --text-dim: #6b4080;
+      --card-bg: rgba(255, 255, 255, 0.55);
+      --card-border: rgba(58, 16, 80, 0.15);
+      --field-bg: rgba(255, 255, 255, 0.7);
       --accent: #F56400;
+      --tagline: #c2410c;
       --error: #c0392b;
-      --success: #1e8449;
+      --wordmark-1: #c2410c;
+      --wordmark-2: #F56400;
+      --wordmark-3: #e0247a;
     }
     * { box-sizing: border-box; }
     body {
@@ -47,33 +63,60 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: var(--bg);
+      background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 55%, var(--bg-3) 100%);
       color: var(--text);
-      font-family: 'Courier New', Consolas, monospace;
+      font-family: 'JetBrains Mono', Consolas, monospace;
       padding: 24px;
+      transition: background 0.2s ease, color 0.2s ease;
     }
+    .fruits {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 8px;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    h1.wordmark {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 3.2rem;
+      margin: 4px 0 0;
+      background: linear-gradient(90deg, var(--wordmark-1), var(--wordmark-2) 50%, var(--wordmark-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.01em;
+    }
+    p.tagline {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--tagline);
+      margin: 2px 0 28px;
+      font-size: 1.15rem;
+    }
+
     .card {
       max-width: 480px;
       width: 100%;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: 8px;
-      padding: 32px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 1.8rem;
-      letter-spacing: -0.02em;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     }
     p.lead {
-      margin: 0 0 24px;
+      margin: 0 0 22px;
       color: var(--text-dim);
       line-height: 1.5;
+      font-size: 0.9rem;
     }
     label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-dim);
       margin-bottom: 6px;
     }
@@ -81,14 +124,15 @@
     input[type="url"],
     input[type="text"] {
       width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: var(--field-bg);
+      border: 1px solid var(--card-border);
       color: var(--text);
-      border-radius: 6px;
+      border-radius: 10px;
       padding: 10px 12px;
       font-family: inherit;
       font-size: 0.95rem;
     }
+    input::placeholder { color: var(--text-dim); opacity: 0.7; }
     input:focus {
       outline: none;
       border-color: var(--accent);
@@ -96,15 +140,15 @@
     .prefix-field {
       display: flex;
       align-items: center;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background: var(--field-bg);
       overflow: hidden;
     }
     .prefix-field span {
       padding: 10px 0 10px 12px;
       color: var(--text-dim);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       white-space: nowrap;
     }
     .prefix-field input {
@@ -115,23 +159,24 @@
     .prefix-field input:focus { outline: none; }
     button[type="submit"] {
       width: 100%;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--wordmark-3));
       color: #ffffff;
       border: none;
-      border-radius: 6px;
-      padding: 12px;
-      font-family: inherit;
-      font-weight: bold;
-      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 13px;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
     }
-    button[type="submit"]:hover { opacity: 0.9; }
+    button[type="submit"]:hover { filter: brightness(1.08); }
     button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
     .result {
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 14px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: var(--field-bg);
       display: none;
     }
     .result.visible { display: block; }
@@ -141,16 +186,18 @@
       align-items: center;
     }
     .result a {
-      color: var(--accent);
-      font-weight: bold;
+      color: var(--tagline);
+      font-weight: 600;
       word-break: break-all;
       flex: 1;
+      text-decoration: none;
     }
+    .result a:hover { text-decoration: underline; }
     .copy-btn {
       background: transparent;
-      border: 1px solid var(--border);
+      border: 1px solid var(--card-border);
       color: var(--text);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 6px 10px;
       font-family: inherit;
       font-size: 0.8rem;
@@ -169,22 +216,34 @@
       position: fixed;
       top: 16px;
       right: 16px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       color: var(--text);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 8px 12px;
-      font-family: inherit;
-      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
       cursor: pointer;
+      backdrop-filter: blur(10px);
     }
     .theme-toggle:hover { border-color: var(--accent); }
   </style>
 </head>
 <body>
   <button class="theme-toggle" id="themeToggle" type="button">light mode</button>
+
+  <div class="fruits" aria-hidden="true">
+    <span>&#x1F96D;</span>
+    <span>&#x1F34D;</span>
+    <span>&#x1F95D;</span>
+    <span>&#x1F34C;</span>
+    <span>&#x1F965;</span>
+  </div>
+
+  <h1 class="wordmark">umbongo</h1>
+  <p class="tagline">they drink it in the congo</p>
+
   <div class="card">
-    <h1>umbo.ngo</h1>
     <p class="lead">Paste a long URL, get a short one back.</p>
 
     <form id="shortenForm">
