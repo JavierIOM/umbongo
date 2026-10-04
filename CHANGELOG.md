@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.3.0] - 2026-10-04
+
+### Added
+- Themed 404 page (`404.html`) for unmatched static routes, and matching "short link not found" / "short link expired" pages from the redirect function. All three auto-redirect to `/` after 10 seconds, with a live countdown and a manual link as a fallback.
+
 ## [2.2.0] - 2026-10-04
 
 ### Added

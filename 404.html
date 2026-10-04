@@ -1,15 +1,10 @@
-import { getStore } from "@netlify/blobs";
-
-const EXPIRY_MS = 14 * 24 * 60 * 60 * 1000;
-
-function notFoundPage(heading, message) {
-  return `<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="refresh" content="10;url=/" />
-  <title>umbongo - ${heading}</title>
+  <title>umbongo - page not found</title>
   <meta name="robots" content="noindex" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -142,8 +137,8 @@ function notFoundPage(heading, message) {
   <p class="tagline">they drink it in the congo</p>
 
   <div class="card">
-    <h2>${heading}</h2>
-    <p>${message} Taking you home in <span id="countdown">10</span>s, or <a href="/">click here</a>.</p>
+    <h2>Page not found</h2>
+    <p>That page doesn't exist. Taking you home in <span id="countdown">10</span>s, or <a href="/">click here</a>.</p>
   </div>
 
   <script>
@@ -177,32 +172,4 @@ function notFoundPage(heading, message) {
     }, 1000);
   </script>
 </body>
-</html>`;
-}
-
-function htmlResponse(html, status) {
-  return new Response(html, {
-    status,
-    headers: { "content-type": "text/html; charset=utf-8" },
-  });
-}
-
-export default async (req, context) => {
-  const slug = context.params.slug;
-  const store = getStore({ name: "links", consistency: "strong" });
-  const record = await store.get(slug, { type: "json" });
-
-  if (!record) {
-    return htmlResponse(notFoundPage("Short link not found", "That short link doesn't exist."), 404);
-  }
-
-  const age = Date.now() - new Date(record.created).getTime();
-  if (age > EXPIRY_MS) {
-    await store.delete(slug);
-    return htmlResponse(notFoundPage("Short link expired", "That short link is more than 14 days old and has expired."), 404);
-  }
-
-  return Response.redirect(record.url, 302);
-};
-
-export const config = { path: "/:slug" };
+</html>
