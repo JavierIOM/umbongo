@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.1.1] - 2026-10-04
+
+### Fixed
+- Short links could 404 immediately after creation. Netlify Blobs defaults to eventual consistency, so a redirect lookup could hit an edge node that hadn't seen the write yet. Both functions now use `consistency: "strong"` on the blob store.
+
 ## [2.1.0] - 2026-10-03
 
 ### Changed

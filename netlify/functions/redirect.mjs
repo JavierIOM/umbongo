@@ -2,7 +2,7 @@ import { getStore } from "@netlify/blobs";
 
 export default async (req, context) => {
   const slug = context.params.slug;
-  const store = getStore("links");
+  const store = getStore({ name: "links", consistency: "strong" });
   const record = await store.get(slug, { type: "json" });
 
   if (!record) {

@@ -62,7 +62,7 @@ export default async (req) => {
     return json({ error: "Enter a valid http(s) URL" }, 400);
   }
 
-  const store = getStore("links");
+  const store = getStore({ name: "links", consistency: "strong" });
   let slug = customSlug;
 
   if (slug) {
