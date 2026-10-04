@@ -205,4 +205,4 @@ export default async (req, context) => {
   return Response.redirect(record.url, 302);
 };
 
-export const config = { path: "/:slug" };
+export const config = { path: "/:slug", preferStatic: true };

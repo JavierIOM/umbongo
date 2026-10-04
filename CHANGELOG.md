@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.3.1] - 2026-10-04
+
+### Fixed
+- Favicon, OG image and apple-touch-icon were all 404ing in production. The catch-all redirect function (`path: "/:slug"`) was intercepting every single-segment request, static files included, and shadowing the real files. Added `preferStatic: true` so Netlify serves an existing static file instead of running the function.
+
 ## [2.3.0] - 2026-10-04
 
 ### Added
