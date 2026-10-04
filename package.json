@@ -1,7 +1,7 @@
 {
   "name": "umbongo",
   "private": true,
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "umbo.ngo URL shortener + public file store",
   "scripts": {
     "generate-assets": "node scripts/generate-assets.mjs"

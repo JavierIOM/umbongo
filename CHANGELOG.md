@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.2.0] - 2026-10-04
+
+### Added
+- Short links now auto-expire after 14 days. Checked lazily on redirect (no cron job); an expired link is deleted on first visit after expiry and returns 404. Noted on the homepage.
+
 ## [2.1.1] - 2026-10-04
 
 ### Fixed
